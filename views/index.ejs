@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>XPAND</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="leaflet/MarkerCluster.css" />
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- leaflet script -->
+
+
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js" integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q==" crossorigin=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+    <!-- chart.js script -->
+    </script>
+
+    <script>
+    $(document).ready(function(){
+
+
+});
+    </script>
+    <style type="text/css">
+    body {
+    font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color:#34495E  ;
+    opacity:0.9;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+    .switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+
+
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(20px);
+  -ms-transform: translateX(20px);
+  transform: translateX(20px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+    #body2{
+      font-family: arial, sans-serif;
+      text-indent: 3em;
+    }
+    table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+
+.legend {
+    line-height: 18px;
+    color: #555;
+}
+.legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
+}
+
+
+</style>
+</head>
+
+<body >
+
+
+    <div class="container-fluid" id="main" >
+
+        <div class="row">
+            <div class="col-sm-12" style="height:100vh;width:100vw;" id="mapid">
+              <div class ="leaflet-control"style="left:30px">
+
+                <div class="row">
+                  <div class="row" id="heading" style="color:white; ">
+
+                      <div class ="row">
+                        <div class="container">
+                        <span style="font-size:30px;cursor:pointer;position:relative;left:90vw; top:10px;color:black;" onclick="openNav()">&#9776; </span>
+                      </div>
+
+            </br>
+
+
+            <div id="mySidenav" class="sidenav">
+              <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+              <div id="poilayer" style="display:none">
+              <div class="col-sm-9">
+              <!-- <div><a href="#">Towns</a></div> -->
+              <div><a href="#"style="padding-top:11px">Satellite View</a></div>
+              <div><a href="#"style="padding-top:11px">Grid View</a></div>
+              <div><a href="#"style="padding-top:11px">Towns Meerut</a></div>
+              <div><a href="#"style="padding-top:11px">Villages</a></div>
+              <div><a href="#"style="padding-top:11px">Connections</a></div>
+
+
+              <br>
+
+
+
+            </div>
+            <div class="col-sm-3">
+              <br>
+              <!-- <div ><label class="switch" for="town"  data-on-text="Satellite" data-off-text="Street">
+                <input type="checkbox" class="toggle" id="town" >
+                <span class="slider round"></span>
+              </label></div></br> -->
+              <div ><label class="switch" for="satellite"  data-on-text="Satellite" data-off-text="Street">
+                <input type="checkbox" class="toggle"  id="satellite">
+                <span class="slider round"></span>
+              </label></div></br>
+              <div ><label class="switch"   for="grid" data-on-text="Satellite" data-off-text="Street">
+                <input type="checkbox" class="toggle" id="grid" >
+                <span class="slider round"></span>
+              </label></div></br>
+            <div><label class="switch"  for="townM" data-on-text="Satellite" data-off-text="Street">
+              <input type="checkbox" class="toggle" id="townM" >
+              <span class="slider round"></span>
+            </label></div></br>
+
+            <div><label class="switch" for="village"  data-on-text="Satellite" data-off-text="Street">
+                  <input type="checkbox" class="toggle"  id="village">
+                  <span class="slider round"></span>
+                </label></div></br>
+            <div ><label class="switch"   for="connections" data-on-text="Satellite" data-off-text="Street">
+                  <input type="checkbox" class="toggle" id="connections" >
+                  <span class="slider round"></span>
+                </label></div>
+
+
+            </div>
+                <form id='myForm'>
+            <div class="col-sm-6 " style="padding-left:50px">
+
+
+                <label class="radio"><input type="radio"name="optradio" value="affluence" id="affluence"><h4>Need</h4></label>
+
+
+                <label class="radio"><input type="radio" name="optradio" value="development" id="development"><h4>Development</h4></label>
+
+
+                <label class="radio"><input type="radio" name="optradio" value="connectivity" id="connectivity"><h4>Connectivity</h4></label>
+
+
+                <label class="radio"><input type="radio" name="optradio" value="household" id="household"><h4>Household</h4></label>
+
+                <label class="radio"><input type="radio" name="optradio" value="infant" id="infant"><h4>Birth Rate</h4></label>
+
+
+
+          </div>
+          <div class="col-sm-6 " style="padding-left:20px">
+
+
+              <label class="radio"><input type="radio" name="optradio" value="population" id="population"><h4>Population Density</h4></label>
+
+
+              <label class="radio"><input type="radio" name="optradio" value="hospital" id="hospital"><h4>Hospital</h4></label>
+
+
+              <label class="radio"><input type="radio" name="optradio"value="pharmacy" id="pharmacy"><h4>Pharmacy</h4></label>
+
+
+              <label class="radio"><input type="radio" name="optradio"value="doctor" id="doctor"><h4>Doctor</h4></label>
+
+
+              <label class="radio"><input type="radio" name="optradio" value="old"id="elder"><h4>Mortality Rate</h4></label>
+
+            </div>
+              </form>
+
+                            <div class="col-sm-11" >
+                              <div ><label for="myRange" >
+                                <input id="myRange" style="width:380px" type="range" min="1" max="6" value="3">
+                              </div>
+                            </div>
+
+                                              <form id='newForm' style="padding-left:35px">
+                                                <div class="col-sm-6 " style="padding-top:10px">
+
+
+                                                  <label class="radio"><input type="radio"name="optradio" value="composite" id="composite"><h4>Composite</h4></label>
+
+
+                                                  <label class="radio"><input type="radio" name="optradio" value="roads" id="roads"><h4>Roads</h4></label>
+
+
+                                                  <label class="radio"><input type="radio" name="optradio" value="houses" id="houses"><h4>Houses</h4></label>
+
+                                                </div>
+                                                <div class="col-sm-6 " style="padding-left:50px">
+
+
+                                                  <label class="radio"><input type="radio" name="optradio" value="river" id="river"><h4>River</h4></label>
+
+
+                                                  <label class="radio"><input type="radio" name="optradio" value="greenery" id="greenery"><h4>Greenery</h4></label>
+
+
+                                                  <label class="radio"><input type="radio" name="optradio"value="dense" id="dense"><h4>Densely Populated</h4></label>
+                                                </div>
+                                          </form>
+
+                                          <div class="col-sm-12"style="width:90%;margin:auto">
+
+
+                                            <canvas id="myChart"></canvas>
+                                          </div>
+                                        </div>
+                                        <div id="districtLayer">
+                                          <div class="col-sm-12 " style="padding-left:80px">
+                                            <font size="6" color="white">Uttar Pradesh</font><br/>
+                                            <font size="5" color="white">District Health Data</font><br/>
+                                          </div>
+                                          <div class="col-sm-12 " style="padding-left:100px">
+                                            <label class="radio"><input type="radio" name="optradio" value="dist_infant" id="dist_infant"><font size="4" color="#00FF00"> &nbsp Infant Mortality</font></label>
+
+
+                                            <label class="radio"><input type="radio" name="optradio" value="dist_polio" id="dist_polio"><font size="4" color="#00FF00">  &nbsp Child Polio Vaccination</font></label>
+
+
+                                            <label class="radio"><input type="radio" name="optradio"value="dist_birth" id="dist_birth"><font size="4" color="#00FF00">  &nbsp Hospital Birth</font></label>
+
+
+                                            <label class="radio"><input type="radio" name="optradio" value="dist_toilet"id="dist_toilet"><font size="4" color="#00FF00">   &nbsp Toilet Facility</font></label>
+
+
+                                            <label class="radio"><input type="radio" name="optradio" value="dist_death" id="dist_death"><font size="4" color="#00FF00">  &nbsp  Annual Deaths</font></label>
+
+
+                                            <label class="radio"><input type="radio" name="optradio" value="dist_literate" id="dist_literate"><font size="4" color="#00FF00">  &nbsp Literate Population</font></label>
+
+
+                                            <label class="radio"><input type="radio" name="optradio" value="dist_malaria" id="dist_malaria"><font size="4" color="#00FF00">  &nbsp Malaria Index</font></label>
+                                          </div>
+                                        </div>
+                                      </div>
+
+
+                                    </div>
+
+                                  </div>
+                                </div>
+
+                              </div>
+
+                            </div>
+                          </div>
+                        </body>
+
+
+<script>function openNav() {
+    document.getElementById("mySidenav").style.width = "450px";
+
+    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+    document.body.style.backgroundColor = "white";
+}</script>
+<script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js" integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q==" crossorigin=""></script>
+
+<!-- load map -->
+
+</html>
+
+<script type="text/javascript" src="../public/map.js"></script>

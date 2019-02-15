@@ -1,0 +1,26 @@
+{
+  "name": "dump",
+  "version": "1.0.0",
+  "description": "Rest API For Demo_Apollo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "RestAPI"
+  ],
+  "author": "Rajit",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "express-bearer-token": "^2.2.0",
+    "jsonwebtoken": "^8.4.0",
+    "mongodb": "^3.1.13",
+    "mongoose": "^5.0.13",
+    "nodemon": "^1.18.9"
+  }
+}
